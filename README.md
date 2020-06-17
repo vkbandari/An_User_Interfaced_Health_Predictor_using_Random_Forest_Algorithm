@@ -26,3 +26,7 @@ Libraries - NumPy 1.16. 0, Pandas 1.0.3, Matplotlib 3.2.1, Seaborn 0.10.1, Sciki
 Database - MySQL 6.0 
 
 <p>code is running successful as on: 20-05-2020</p>
+
+
+
+<p>Please inform me to use this project for any purpose and if any quries please mail me : krishnavamshi.12321@gmail.com</p>
