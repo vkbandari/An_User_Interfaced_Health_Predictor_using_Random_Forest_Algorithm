@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Health Predictor</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/view doctor1.jpg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+{% block banner %}
+{% endblock %}
+
+{% block nav %}
+                            <h1 style="text-align:center">View Doctor Details</h1>
+                            <div class="sidemenu1">
+                            <div class="vertical-menu">
+                              <a href="/Admin-Homepage" >Home</a>
+                              <a href="/Admin-Homepage/Add-Doctors/">Add Doctor</a>
+                              <a href="/View-users/">View User</a>
+                                <a href="/View-Doctor" class="active">View Doctor</a>
+                              <a href="/logout">Logout</a>
+                            </div>
+                        </div>
+                        {% endblock %}
+
+                        {% block body %}
+                            <div class="container">
+                                <table class="viewdoc_table">
+                                 <tr class="viewdoc_tr">
+                                    <th class="viewdoc_th">Name</th>
+                                    <th class="viewdoc_th">Email</th>
+                                    <th class="viewdoc_th">Mobile Number</th>
+                                    <th class="viewdoc_th">Hospital name</th>
+                                      <th class="viewdoc_th">Hospital address</th>
+                                    <th class="viewdoc_th">City</th>
+                                      <th class="viewdoc_th">Landmark</th>
+                                    <th class="viewdoc_th">Age</th>
+                                    <th class="viewdoc_th">Specailist</th>
+                                    <th class="viewdoc_th">Gender</th>
+                                </tr>
+                                {% for i in results%}
+                                <tr class="viewdoc_tr">
+                                    <td class="viewdoc_td">{{i[1]}}</td>
+                                    <td class="viewdoc_td">{{i[2]}}</td>
+                                    <td class="viewdoc_td">{{i[4]}}</td>
+                                    <td class="viewdoc_td">{{i[5]}}</td>
+                                    <td class="viewdoc_td">{{i[6]}}</td>
+                                    <td class="viewdoc_td">{{i[7]}}</td>
+                                    <td class="viewdoc_td">{{i[8]}}</td>
+                                    <td class="viewdoc_td">{{i[9]}}</td>
+                                    <td class="viewdoc_td">{{i[10]}}</td>
+                                    <td class="viewdoc_td">{{i[12]}}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            </div>
+                        {% endblock %}
+</body>
+</html>

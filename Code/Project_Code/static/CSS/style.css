@@ -1,0 +1,570 @@
+.header_blg h1
+ {
+    text-align:center;
+ }
+.banner_blg img
+{
+    max-width:100%;
+    height:auto;
+}
+.icon_blg
+{
+    margin:0 5px;
+}
+.nav_blg li a
+{
+    font-size:25px;
+}
+.select_form
+{
+    width: 157px;
+    padding: 7px;
+    border-radius: 5px;
+    color: #999999;
+}
+.span_text
+{
+    color: #f80303;
+    font-size: medium;
+}
+.signup_formblg
+{
+  width: 60%;
+    margin: 2px auto;
+
+}
+.inner_signupformblg
+{
+       padding: 47px 78px 5px;
+       width:88%;
+}
+.text_align
+{
+    text-align: center;
+    /* margin-top: 14px; */
+    /*padding-top: 40px;*/
+    /* padding: 10px; */
+    font-size: 30px;
+    color: #c70606;
+    /* line-height: 0px; */
+    font-weight:900;
+
+}
+#slide{
+	width:96%;
+	}
+
+* {
+	box-sizing: border-box
+}
+.banner_img_blg img
+{
+    height:450px;
+}
+.mySlides {
+	display: none
+}
+
+.slideshow-container {
+	width: 1143px;
+    position: relative;
+
+}
+/* Next & previous buttons */
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 16px;
+	margin-top: -22px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+}
+/* Position the "next button" to the right */
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+	background-color: rgba(0,0,0,0.8);
+}
+/* Caption text */
+.text {
+	color: #f2f2f2;
+	font-size: 15px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+	cursor: pointer;
+	height: 13px;
+	width: 13px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
+.active, .dot:hover {
+	background-color: #717171;
+}
+/* Fading animation
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 2s;
+	animation-name: fade;
+	animation-duration: 2s;
+}
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+*/
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+.body_blg img
+{
+    width:150%;
+    height:auto;
+}
+.active a
+{
+  background-color: #0e0d0d !important;
+  color: #eedd18 !important;
+}
+.nav_blg .active a
+{
+    color: #eedd18 !important;
+}
+.nav_blg1 li a
+{
+    font-size:21px;
+}
+.signup_formblg1
+{
+
+}
+.inner_signupformblg1
+{
+    padding: 47px 53px;
+}
+.viewdoc_table,.viewdoc_tr,.viewdoc_td,.viewdoc_th
+{
+    border-collapse:collapse;
+    text-align:center;
+    border:1px solid black;
+}
+.viewdoc_th,.viewdoc_td
+{
+    width: 164px;
+}
+.viewdoc_th1,.viewdoc_td1
+{
+    width:290px;
+}
+.viewdoc_th
+{
+
+}
+.nav-blgheader
+{
+background-color: #08f4c3 !important;
+    /* border-color: #000000; */
+border: 2px solid black !important;
+}
+.nav_blg li a
+{
+    line-height: 25px !important;
+    color:#df0000 !important;
+    font-weight: bold;
+}
+.form_inputblg
+{
+    margin-bottom:10px;
+}
+.form_blg
+{
+        width: 63%;
+    margin: auto;
+    text-align: -webkit-left;
+
+     background-color: #b6c4dd;
+     border-radius:10px;
+}
+.news_formblg
+{
+    padding:2px 14px;
+}
+
+
+.span_text
+{
+        margin-top: 10px;
+        color: red !important;
+        font-size: larger;
+}
+.form_blg h3
+{
+    text-align: center;
+    font-family: cursive;
+    color: brown;
+
+}
+.form_left
+{
+    width: 48%;
+    float: left;
+}
+.form_right;
+{
+    width: 48%;
+    float: left;
+}
+.clearfix
+{
+    clear:both;
+}
+.form_inputblg1
+{
+    text-align:center;
+}
+.form_blg12
+{
+    margin-bottom:10px;
+    padding: 10px;
+}
+.select_form12
+{
+   width: 15%;
+    margin: auto;
+   background-color: #b6c4dd;
+    border-radius: 15px;
+    margin-top: 100px;
+        text-align: -webkit-center;
+}
+.select_form12 h3
+ {
+    text-align:center;
+    padding-top:10px;
+ }
+ .form_blg12 select
+ {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+ }
+ .modelpar p {
+font-size: 25px;
+    font-weight: 900;
+    font-family: cursive;
+    font-style: italic;
+    }
+
+.modelpar span
+{
+    color:red;
+}
+.mean,.seblg,.worstblg
+ {
+
+ }
+ .formblg
+ {
+    width: 45%;
+    float: left;
+    margin: 1%;
+ }
+ .formsubmit
+  {
+    text-align:center;
+  }
+.clearfix
+{
+    clear:both;
+}
+.formblg label
+{
+    font-family:monospace;
+    font-weight:900;
+    font-size:20px;
+    color:red;
+}
+.modelpar p {
+font-size: 25px;
+    font-weight: 900;
+    font-family: cursive;
+    font-style: italic;
+    }
+
+.modelpar span
+{
+    color:red;
+}
+.alertstrong strong {
+
+    font-size: 25px;
+    font-weight: 900;
+    font-family: cursive;
+    font-style: italic;
+}
+.formgroup
+{
+    width:50%;
+    margin:1% auto !important;
+}
+.precuations_ul li
+{
+    font-size: 15px;
+    font-family: cursive;
+    color: red;
+}
+.precuations_p
+{
+    font-size: 20px;
+    font-family: cursive;
+    color: red;
+}
+
+.banner img
+{
+    width:100%;
+}
+.banner
+{
+    text-align:center;
+    position:relative
+}
+.bgclor
+{
+    background-color:#81d3f4;
+}
+.hpssystem
+{
+    font-weight: 900;
+    font-size: 60px;
+    color: brown;
+    font-family: -webkit-body;
+}
+.hps
+{
+color: #6508fc;
+    font-weight: 700;
+    font-size: 33px;
+    text-align: -webkit-center;
+    margin-left: 10px;
+}
+.signblg,.siupblg
+{
+    width: 50%;
+    margin: 10px auto;
+
+}
+.sidemenu
+{
+    width:80%;
+    float:left;
+
+}
+.sidemenu1
+{
+    width:20%;
+    float:left;
+
+}
+.clearfix
+{
+    clear:both;
+}
+.sidenav {
+  /*height: 100%;*/
+  width: 240px;
+  background:white;
+  line-height:86px;
+  /*position: fixed;
+  z-index: 1;
+  top: 70px;
+  left: 0;
+
+  overflow-x: hidden;
+  padding-top: 20px;*/
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: red;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+.active1
+{
+    background:#134715 !important;
+}
+.vertical-menu {
+  width: 200px; /* Set a width if you like */
+}
+
+.vertical-menu a {
+  background-color: #eee; /* Grey background color */
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50; /* Add a green color to the "active/current" link */
+  color: white;
+}
+.formgroup12
+{
+overflow: auto;
+}
+.signupblg1
+{
+    text-align:center;
+}
+.signupblg1 a
+{
+    color: #8f0c0c;
+    font-size: 18px;
+    font-family: cursive;
+    font-style: oblique;
+    font-weight: 800;
+}
+.signblg
+{
+    top: 160px;
+    left: 630px;
+    position: absolute;
+
+}
+.siupblg
+{
+    top: 42px;
+    left: 630px;
+    position: absolute;
+
+}
+.banner1 img
+{
+    width: 100%;
+    height:110%;
+}
+.banner1
+{
+margin-top: 42px;
+}
+.form1
+{
+padding: 0px 78px 0px;
+}
+.text_align1
+{
+    text-align: center;
+    /* margin-top: 14px; */
+    /* padding-top: 40px; */
+    /* padding: 10px; */
+    font-size: 30px;
+    color: #c70606;
+    /* line-height: 0px; */
+    font-weight: 900;
+}
+.loginbtn
+{
+    /* margin-top: -29px; */
+    font-size: 20px;
+    margin-left: 13px;
+}
+.loginbtn a
+{
+    color:black;
+    font-family: cursive;
+    font-variant: all-small-caps;
+}
+.banner2
+{
+    width:78%;
+    float:left;
+    position:relative;
+}
+.adddoctorblg
+{
+    top: 73px;
+    left: 328px;
+    position: absolute;
+}
+.signup_formblg2
+{
+    /*background-color: #1921b254; */
+    /* border-radius: 30px; */
+    /* border: 2px solid black; */
+}
+.formgroup12
+{
+    margin-bottom:4px;
+}
+.form2
+{
+    padding:0 53px;
+}

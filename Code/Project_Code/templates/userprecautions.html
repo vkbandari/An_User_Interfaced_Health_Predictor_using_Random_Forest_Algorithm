@@ -1,0 +1,52 @@
+{% extends 'doctor_dashboard.html' %}
+
+                    {% block nav %}
+                            <h1 style="text-align:center;;color:white">User deatils</h1>
+                        <div class="sidemenu1">
+<div class="sidenav">
+                                      <a href="/User-Homepage" class="active1">Home</a>
+                                      <button class="dropdown-btn">Disease prediction
+                                        <i class="fa fa-caret-down"></i>
+                                      </button>
+                                      <div class="dropdown-container">
+                                        <a href="/User/Heart-Analysis/">Heart Analysis</a>
+                                        <a href="/User/Dengu-Analysis/">Fever Analysis</a>
+                                      </div>
+                                        <a href="/Viewsuser-Doctor">View Doctor</a>
+                                        <a href="/user/doctor-Precautions/">Precautions</a>
+                                      <a href="/logout">logout</a>
+                                    </div>
+                        </div>
+                        {% endblock %}
+{% block banner %}
+{% if msg %}
+        <div class="container" style="width:82%;float:left;">
+  <table class="table table-bordered usertable">
+    <thead>
+      <tr>
+          <th>Appointment id</th>
+        <th>User name</th>
+        <th>Disease</th>
+        <th>Precautions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in msg %}
+      <tr>
+          <td>{{i[4]}}</td>
+        <td>{{ i[0]}}</td>
+        <td>{{ i[1]}}</td>
+        <td>{{ i[2]}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div> <h1 style="color:white;">You didnot get any Appoointments </h1></div>
+<div style="clear:both;">
+</div>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'doctor_dashboard.html' %}
+
+                    {% block nav %}
+                            <h1 style="text-align:center;;color:white">User deatils</h1>
+                        <div class="sidemenu1">
+
+                                    <div class="sidenav">
+                                      <a href="/Doctor-Homepage">Home</a>
+                                        <a href="#">View Users</a>
+                                      <a href="/logout">logout</a>
+                                    </div>
+                        </div>
+                        {% endblock %}
+{% block banner %}
+{% if results %}
+        <div class="container" style="width:82%;float:left;">
+  <table class="table table-bordered usertable">
+    <thead>
+      <tr>
+        <th>User name</th>
+        <th>Disease</th>
+        <th>Phone</th>
+          <th>Date of appointment</th>
+          <th>Precautions</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in results %}
+      <tr>
+        <td>{{ i[3]}}</td>
+        <td>{{ i[4]}}</td>
+        <td>{{ i[5]}}</td>
+          <td>{{i[6]}}</td>
+          <td>
+              <a href="/doctor/user-precautions/submitted/{{i[0]}}/" class="btn btn-info" role="button">Precautions</a>
+          </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div> <h1 style="color:white;">You didnot get any Appoointments </h1></div>
+<div style="clear:both;">
+</div>
+
+{% endif %}
+{% endblock %}

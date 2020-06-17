@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Health Predictor</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/appointment.jpeg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+{% block banner %}
+{% endblock %}
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+     <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+     <!--<meta name="description" content="">-->
+     <!--<meta name="author" content="">-->
+     <!--<link rel="icon" href="../../favicon.ico">-->
+
+
+
+     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+      <!--<script>-->
+            <!--$(function() {-->
+            <!--$('input').blur(function() {-->
+            <!--$.ajax({-->
+            <!--url: '/user/book_appointment1',-->
+            <!--data: $('myForm').serialize(),-->
+            <!--type: 'POST',-->
+            <!--dataType:'json',-->
+            <!--success: function(response) {-->
+                <!--console.log(response);-->
+
+                <!--$('#user span').text(response.user)-->
+            <!--},-->
+            <!--error: function(error) {-->
+                <!--console.log(error);-->
+            <!--}-->
+        <!--});-->
+    <!--});-->
+<!--});-->
+      <!--</script>-->
+
+
+{% block nav %}
+<h1 style="text-align:center;">User Appointment Form</h1>
+<div class="sidemenu1">
+
+    <div class="sidenav">
+        <a href="/User-Homepage">Home</a>
+        <button class="dropdown-btn">Disease prediction
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="/User/Heart-Analysis/" class="active1">Heart Analysis</a>
+            <a href="/User/Dengu-Analysis/">Fever Analysis</a>
+        </div>
+        <a href="/Viewsuser-Doctor">View Doctor</a>
+        <a href="/logout">logout</a>
+    </div>
+</div>
+<script>
+ var dropdown = document.getElementsByClassName("dropdown-btn");
+ var i;
+ for (i = 0; i < dropdown.length; i++) {
+ dropdown[i].addEventListener("click", function() {
+ this.classList.toggle("active");
+ var dropdownContent = this.nextElementSibling;
+ if (dropdownContent.style.display === "block") {
+ dropdownContent.style.display = "none";
+ } else {
+ dropdownContent.style.display = "block";
+ }
+ });
+ }
+</script>
+{% endblock %}
+{% block body %}
+{% if msg=="confirmed" %}
+    <div class="container">
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <h3>your appointment is confirmed.Patient ID is :{{ id }}</h3>
+
+        </div>
+    </div>
+{% endif %}
+{% if msg=="submitted" %}
+    <div class="container">
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <h4>your appointment submitted successfully</h4>
+
+        </div>
+    </div>
+{% endif %}
+
+<p id="user"><span></span> </p>
+<div class="sidemenu" style="text-align:center">
+                    <div class="cancer_form">
+    <form action="/user/appointment_submitted" method="post" class="form-horizontal" onsubmit="return validateForm()" name="myForm">
+        {% for i in doctor %}
+        <div class="form-group">
+            <label style="width:20%;color:#ca3636;"> Docter name:</label>
+            <input type="text" value="{{i[1]}}" class="form-group" name="dname">
+        </div>
+        <div class="form-group">
+            <label style="width:20%;color:#ca3636;"> Docter Email:</label>
+            <input type="text" value="{{i[2]}}" class="form-group" name="demail">
+        </div>
+        <div class="form-group">
+            <label style="width:20%;color:#ca3636;"> hospital name:</label>
+            <input type="text" value="{{i[5]}}" class="form-group" name="hname">
+        </div>
+        <div class="form-group">
+            <label style="width:20%;color:#ca3636;"> hospital address:</label>
+            <input type="text" value="{{i[6]}}" class="form-group" name="haddress">
+        </div>
+        {% endfor %}
+        {% for i in result %}
+        <div class="form-group">
+            <label style="width:20%;color:#ca3636;"> User name</label>
+            <input type="text" value="{{i[1]}}" class="form-group" name="uname">
+        </div>
+        {% endfor %}
+        <div class="form-group">
+            <label style="width:20%;color:#ca3636;"> Disease name:</label>
+            <input type="text" value="{{name}}" class="form-group" name="disease">
+        </div>
+        <div class="form-group">
+            <label style="width:20%;color:#ca3636;"> Mobile number:</label>
+            <input type="text"  class="form-group" name="pno">
+            <span id="pno1" class="span_text"></span>
+        </div>
+        <div class="form-group">
+            <label style="width:20%;color:#ca3636;"> Choose appointment Date :</label>
+            <input type="date" class="form-group" name="date" style="width:16%">
+            <span id="date1" class="span_text"></span>
+        </div>
+
+        <div>
+            <input type="submit" value="submit">
+        </div>
+    </form>
+</div>
+     <script>
+            function validateForm()
+            {
+
+                var pno = document.forms['myForm']['pno'].value;
+                var date = document.forms['myForm']['date'].value;
+
+                        if(pno == "")
+                        {
+                            document.getElementById('pno1').innerHTML = "*** Please Enter Phone Number"
+                            return false;
+                        }
+                        if(pno.length != 10)
+                        {
+                            document.getElementById('pno1').innerHTML = "*** Please 10digit Phone number"
+                            return false;
+                        }
+                        if(isNaN(pno))
+                        {
+                            document.getElementById('pno1').innerHTML = "*** Please Enter digits only"
+                            return false;
+                        }
+                        if(date == "")
+                        {
+                            document.getElementById('date1').innerHTML = "*** Please select appointment date"
+                            return false;
+                        }
+
+            }
+        </script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="">
+     <meta name="author" content="">
+     <link rel="icon" href="../../favicon.ico">
+
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script>
+            $(function() {
+            $('input').blur(function() {
+            $.ajax({
+            url: '/user/book_appointment1',
+            data: $('myForm').serialize(),
+            type: 'POST',
+            dataType:'json',
+            success: function(response) {
+                console.log(response);
+
+                $('#user span').text(response.user)
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+});
+      </script>
+{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Health Predictor</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/user_homepage.jpg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+{% block banner %}
+{% endblock %}
+                        {% block nav %}
+                        <h1 style="text-align:center;">User Homepage</h1>
+                        <div class="sidemenu1">
+
+                                    <div class="sidenav">
+                                      <a href="/User-Homepage" class="active1">Home</a>
+                                      <button class="dropdown-btn">Disease prediction
+                                        <i class="fa fa-caret-down"></i>
+                                      </button>
+                                      <div class="dropdown-container">
+                                        <a href="/User/Heart-Analysis/">Heart Analysis</a>
+                                        <a href="/User/Dengu-Analysis/">Fever Analysis</a>
+                                      </div>
+                                        <a href="/Viewsuser-Doctor">View Doctor</a>
+                                        <a href="/user/doctor-Precautions/">Precautions</a>
+                                      <a href="/logout">logout</a>
+                                    </div>
+
+
+                                    <!--<div class="vertical-menu">-->
+                                      <!--<a href="/User-Homepage" class="active">Home</a>-->
+                                      <!--<a href="#">Diseases Analysis-->
+                                          <!--<i class="fa fa-caret-down"></i>-->
+                                        <!--<div class="dropdown-content">-->
+                                          <!--<a href="#">Heart Analysis</a>-->
+                                          <!--<a href="#">Dengue Analysis</a>-->
+                                        <!--</div>-->
+                                      <!--</a>-->
+                                      <!--<a href="/Viewsuser-Doctor">View Doctor</a>-->
+                                      <!--<a href="/logout">Logout</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="banner_blg1">-->
+                                        <!--<nav class="navbar navbar-default nav-blgheader">-->
+                                            <!--<ul class="nav navbar-nav nav_blg1">-->
+                                              <!--<li class="active"><a href="/User-Homepage">Home</a></li>-->
+                                                <!--<li><a href="/User/Heart-Analysis/">Heart Analysis</a></li>-->
+                                                <!--<li><a href="/User/Dengu-Analysis/">Dengue Analysis</a></li>-->
+                                                <!--<li><a href="/Viewsuser-Doctor">View Doctor</a></li>-->
+                                                <!--<li><a href="/logout">Logout</a></li>-->
+                                            <!--</ul>-->
+                                        <!--</nav>-->
+                                    <!--</div>-->
+                                </div>
+                            <script>
+                                var dropdown = document.getElementsByClassName("dropdown-btn");
+                                var i;
+
+                                for (i = 0; i < dropdown.length; i++) {
+                                  dropdown[i].addEventListener("click", function() {
+                                    this.classList.toggle("active");
+                                    var dropdownContent = this.nextElementSibling;
+                                    if (dropdownContent.style.display === "block") {
+                                      dropdownContent.style.display = "none";
+                                    } else {
+                                      dropdownContent.style.display = "block";
+                                    }
+                                  });
+                                }
+                            </script>
+                        {% endblock %}
+
+                        {% block body %}
+                            <div class="sidemenu" >
+                                    <div class="body_blg">
+                                        <!--<img src="{{url_for('static',filename='images/user_homepage.jpg')}}" rel="stylesheet">-->
+                                    </div>
+                            </div>
+                        {% endblock %}
+                        <div class="clearfix"></div>
+
+</body>
+</html>

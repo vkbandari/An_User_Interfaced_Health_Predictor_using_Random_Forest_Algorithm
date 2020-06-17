@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Health Predictor</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/heart analysis.jpeg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+{% block banner %}
+{% endblock %}
+                        {% block nav %}
+                            <h1 style="text-align:center;;color:white">Heart Analysis</h1>
+                        <div class="sidemenu1">
+
+                                    <div class="sidenav">
+                                      <a href="/User-Homepage">Home</a>
+                                      <button class="dropdown-btn">Diseases prediction
+                                        <i class="fa fa-caret-down"></i>
+                                      </button>
+                                      <div class="dropdown-container">
+                                        <a href="/User/Heart-Analysis/" class="active1">Heart Analysis</a>
+                                        <a href="/User/Dengu-Analysis/">Fever Analysis</a>
+                                      </div>
+                                        <a href="/Viewsuser-Doctor">View Doctor</a>
+                                      <a href="/logout">logout</a>
+                                    </div>
+                        </div>
+                            <script>
+                                var dropdown = document.getElementsByClassName("dropdown-btn");
+                                var i;
+
+                                for (i = 0; i < dropdown.length; i++) {
+                                  dropdown[i].addEventListener("click", function() {
+                                    this.classList.toggle("active");
+                                    var dropdownContent = this.nextElementSibling;
+                                    if (dropdownContent.style.display === "block") {
+                                      dropdownContent.style.display = "none";
+                                    } else {
+                                      dropdownContent.style.display = "block";
+                                    }
+                                  });
+                                }
+                            </script>
+                        {% endblock %}
+
+                        {% block body %}
+                            <div class="container">
+                                {% if msg1 == "predicted_successfully" %}
+
+                                    {% if results == 0 %}
+                                    <div class="alert alert-success alertstrong">
+                                        <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                                        <strong> < 50% diameter narrowing( Patient is Safe )</strong>
+                                         <a href="{{url_for('book_appointment',name='heart disease')}}" class="btn btn-info">Book_appointment</a>
+                                    </div>
+                                    {% endif %}
+                                    {% if results == 1 %}
+                                    <div class="alert alert-danger">
+                                        <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                                        <strong> > 50% diameter narrowing( Patient is Unsafe )</strong>
+                                        <ul class="precuations_ul">
+                                            <li>Don't smoke or use tobacco</li>
+                                            <li>Exercise for about 30 minutes on most days of the week</li>
+                                            <li>Eat a heart-healthy diet</li>
+                                            <li>Maintain a healthy weight</li>
+                                            <li>Get enough quality sleep</li>
+                                            <li>Manage stress</li>
+                                            <li>Get regular health screenings</li>
+                                        </ul>
+                                         <a href="{{url_for('book_appointment',name='heart disease')}}" class="btn btn-info">Book_appointment</a>
+                                    </div>
+                                    {% endif %}
+
+                            {% endif %}
+                                <div class="sidemenu" >
+                    <div class="cancer_form">
+                        <form class="form-horizontal" method="post" action="{{url_for('heart_analysis_submitted')}}" onsubmit="return validateForm()" name="myForm" enctype = "multipart/form-data">
+                            <!--<div class="formblg">-->
+                                <!--<label>Upload Independent Training dataset</label>-->
+                                <!--<input type="file" name="xtarin" id="filechooser1">-->
+                                <!--<div class="span_text">-->
+                                    <!--<span id="file1" ></span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="formblg">-->
+                                <!--<label>Upload Target Training dataset</label>-->
+                                    <!--<input type="file" name="ytarin" id="filechooser2">-->
+                                    <!--<div class="span_text">-->
+                                        <!--<span id="file2" ></span>-->
+                                    <!--</div>-->
+                            <!--</div>-->
+                                <div class="clearfix"></div>
+
+                            <div class="mean">
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6" style="color:white">Age:</label>
+                                <div class="col-sm-6">
+                                  <input type="text" class="form-control" placeholder="Enter Age" name="age">
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6" style="color:white">Sex:</label>
+                                <div class="col-sm-6">
+                                  <select name="sex" class="form-control">
+                                      <option value="1">Male</option>
+                                      <option value="0">Female</option>
+                                  </select>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6" style="color:white">Chest_pain:</label>
+                                <div class="col-sm-6">
+                                    <select name="chestpain" class="form-control">
+                                        <option value="1">Typical angina</option>
+                                        <option value="0">Atypical angina</option>
+                                        <option value="0">Non-anginal pain</option>
+                                        <option value="0">Asymptomatic</option>
+                                  </select>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup" >
+                                <label class="control-label col-sm-6" style="color:white">Resting Blood Pressure:</label>
+                                <div class="col-sm-6">
+                                  <input type="text" class="form-control" placeholder="Enter trestbps in mm Hg" name="trestbps">
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6" style="color:white">Serum Cholestoral:</label>
+                                <div class="col-sm-6">
+                                  <input type="text" class="form-control" placeholder="Enter serum cholestoral in mg/dl" name="serumcholestoral">
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6" style="color:white">Fasting Blood Sugar:</label>
+                                <div class="col-sm-6">
+                                  <select name="fbs" class="form-control">
+                                      <option value="1"> >120mg/dl </option>
+                                      <option value="0"> <120mg/dl</option>
+                                  </select>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6" style="color:white">Resting Electrocardiographic Results:</label>
+                                <div class="col-sm-6">
+                                  <select name="restecg" class="form-control">
+                                      <option value="0"> Normal </option>
+                                      <option value="1"> Having ST-T wave abnormality</option>
+                                      <option value="2"> definite left ventricular hypertrophy by Estes' criteria</option>
+                                  </select>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6" style="color:white">Thalach:</label>
+                                <div class="col-sm-6">
+                                  <input type="text" class="form-control" placeholder="Enter Thalach" name="thalach">
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6" style="color:white">Exercise induced angina:</label>
+                                <div class="col-sm-6">
+                                  <select name="exang" class="form-control">
+                                      <option value="1"> Yes </option>
+                                      <option value="0"> No </option>
+                                  </select>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6" style="color:white">ST depression induced by exercise relative to rest:</label>
+                                <div class="col-sm-6">
+                                  <input type="text" class="form-control" placeholder="Enter oldpeak value" name="oldpeak">
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6" style="color:white">The slope of the peak exercise ST segment:</label>
+                                    <div class="col-sm-6">
+                                      <select name="slope" class="form-control">
+                                      <option value="1"> Upsloping </option>
+                                      <option value="2"> Flat</option>
+                                      <option value="3"> Downsloping</option>
+                                  </select>
+                                    </div>
+                                </div><!--form-group---->
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6" style="color:white">Number of major vessels colored by flourosopy:</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" placeholder="Enter no.of major vessels between(0-3)" name="majorvessels">
+                                    </div><!---col-sm-10-->
+                                </div><!--form-group---->
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6" style="color:white">Thal:</label>
+                                    <div class="col-sm-6">
+                                      <select name="Thal" class="form-control">
+                                      <option value="3"> Normal </option>
+                                      <option value="6"> Fixed defect</option>
+                                      <option value="7"> Reversable defect</option>
+                                  </select>
+                                    </div><!---col-sm-10-->
+                                    <div class="formsubmit">
+                                    <input type="submit" value="Predict" class="btn btn-info">
+
+                                    </div>
+                                </div><!--form-group---->
+
+                            </div><!---meanblg---->
+                        </form>
+                    </div><!---cancerform--->
+                                </div><!---sidemenu-->
+
+                            </div><!---containerblg--->
+                    <script>
+                function validateForm()
+                {
+
+                    var file1 = document.getElementById('filechooser1');
+                    var cssvfile = file1.value;
+                    var Extension = cssvfile.substring(cssvfile.lastIndexOf('.') + 1).toLowerCase();
+
+                    var file2 = document.getElementById('filechooser2');
+                    var cssvfile1 = file2.value;
+                    var Extension1 = cssvfile1.substring(cssvfile1.lastIndexOf('.') + 1).toLowerCase();
+
+
+                    if(cssvfile == "")
+                        {
+                            document.getElementById('file1').innerHTML = "*** Please Upload file"
+                            return false;
+
+                        }
+                    if(Extension != "csv")
+
+                        {
+                            document.getElementById('file1').innerHTML = "*** Please Upload CSV files only"
+                            return false;
+                        }
+                    if(cssvfile1 == "")
+                        {
+                            document.getElementById('file2').innerHTML = "*** Please Upload file"
+                            return false;
+
+                        }
+                    if(Extension1 != "csv")
+
+                        {
+                            document.getElementById('file2').innerHTML = "*** Please Upload CSV files only"
+                            return false;
+                        }
+                }
+
+                    </script>
+                        {% endblock %}
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Doctor Dashboard</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+    <style>
+        .usertable td, .usertable th
+        {
+            color:white;
+        }
+    </style>
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/heart analysis.jpeg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+
+                        {% block nav %}
+                            <h1 style="text-align:center;;color:white">Doctor Dashboard</h1>
+                        <div class="sidemenu1">
+
+                                    <div class="sidenav">
+                                      <a href="/Doctor-Homepage">Home</a>
+                                        <a href="/doctor/View-user-appointment-details/">View Users</a>
+                                      <a href="/logout">logout</a>
+                                    </div>
+                        </div>
+                        {% endblock %}
+{% block banner %}
+{% endblock %}
+</body>
+</html>

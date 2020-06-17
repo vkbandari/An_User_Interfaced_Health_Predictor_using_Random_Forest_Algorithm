@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Health Predictor</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/admin home page.jpg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+{% block banner %}
+{% endblock %}
+
+                        {% block nav %}
+                            <h1 style="text-align:center">Admin Homepage</h1>
+                        <div class="sidemenu1">
+                            <div class="vertical-menu">
+                              <a href="/Admin-Homepage" class="active">Home</a>
+                              <a href="/Admin-Homepage/Add-Doctors/">Add Doctor</a>
+                              <a href="/View-users/">View User</a>
+                                <a href="/View-Doctor">View Doctor</a>
+                              <a href="/logout">Logout</a>
+                            </div>
+                        </div>
+                            <!--<div class="container-fluid">-->
+                                <!--<div class="container header_blg">-->
+
+                                    <!--<div class="banner_blg1">-->
+                                        <!--<nav class="navbar navbar-default nav-blgheader">-->
+                                            <!--<ul class="nav navbar-nav nav_blg">-->
+                                              <!--<li class="active"><a href="/Admin-Homepage">Home</a></li>-->
+                                                <!--<li><a href="/Admin-Homepage/Add-Doctors/">Add Doctor</a></li>-->
+                                                <!--<li><a href="/View-users/">View User</a></li>-->
+                                                <!--<li><a href="/View-Doctor">View Doctor</a></li>-->
+                                                <!--<li><a href="/Model-performance/">Model Performance</a></li>-->
+                                                <!--<li><a href="/logout">Logout</a></li>-->
+                                            <!--</ul>-->
+                                        <!--</nav>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        {% endblock %}
+
+                        {% block body %}
+                                <div class="sidemenu" >
+                                    <div class="body_blg">
+                                        <!--<img src="{{url_for('static',filename='images/admin_homepage.jpg')}}" rel="stylesheet">-->
+                                    </div>
+                                </div>
+
+                        {% endblock %}
+</body>
+</html>

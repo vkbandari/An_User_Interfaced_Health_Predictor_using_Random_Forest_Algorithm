@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Health Predictor</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/health_care3.jpg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+{% block banner %}
+{% endblock %}
+
+                        {% block nav %}
+                            <h1 style="text-align:center">Model Performance</h1>
+                            <div class="sidemenu1">
+                            <div class="vertical-menu">
+                              <a href="/Admin-Homepage" >Home</a>
+                              <a href="/Admin-Homepage/Add-Doctors/">Add Doctor</a>
+                              <a href="/View-users/">View User</a>
+                                <a href="/View-Doctor">View Doctor</a>
+                              <a href="/logout">Logout</a>
+                            </div>
+                        </div>
+                        {% endblock %}
+
+                        {% block body %}
+
+                            {% if msg == "csv_uploaded" %}
+                        <div class="container-fluid">
+                            <div class="container">
+
+                                <div class="form_blg">
+                                    <h3>Select CSV FILES</h3>
+                                    <form method="post" action="{{url_for('model_performance_csv_submitted')}}" onsubmit="return validateForm()" name="myForm" enctype = "multipart/form-data" class="news_formblg">
+                                        <div class="form_inputblg">
+                                            <h3>Independent Variables</h3>
+                                            <div class="form_left">
+                                                <label>Train dataset</label>
+                                                <input type="file" name="xtrain" id="filechooser">
+                                                <div class="span_text">
+                                                <span id="file1" ></span>
+                                                </div><!---spanblg--->
+                                            </div><!---formleft--->
+
+                                            <div class="form_right">
+                                                <label>Test dataset</label>
+                                                <input type="file" name="xtest" id="filechooser1">
+                                                <div class="span_text">
+                                                <span id="file2" ></span>
+                                                </div><!---spanblg--->
+                                            </div><!---formleft--->
+                                        </div><!---form_inputblg--->
+
+                                            <div class="clearfix"></div>
+                                        <div class="form_inputblg">
+                                            <h3>Dependent Variables</h3>
+                                            <div class="form_left">
+                                                <label>Train dataset</label>
+                                                <input type="file" name="ytrain" id="filechooser2">
+                                                <div class="span_text">
+                                                <span id="file3" ></span>
+                                                </div><!---spanblg--->
+                                            </div><!---formleft--->
+                                            <div class="form_right">
+                                                <label>Test dataset</label>
+                                                <input type="file" name="ytest" id="filechooser3">
+                                                <div class="span_text">
+                                                <span id="file4" ></span>
+                                                </div><!---spanblg--->
+                                            </div><!---formleft--->
+                                        </div><!---form_inputblg--->
+
+
+                                        <div class="form_inputblg1">
+                                            <input type="submit" value="Submit" class="btn btn-info btn_align">
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+            <script>
+                function validateForm()
+                {
+
+                    var file1 = document.getElementById('filechooser');
+                    var cssvfile = file1.value;
+                    var Extension = cssvfile.substring(cssvfile.lastIndexOf('.') + 1).toLowerCase();
+
+                    var file2 = document.getElementById('filechooser1');
+                    var cssvfile1 = file2.value;
+                    var Extension1 = cssvfile1.substring(cssvfile1.lastIndexOf('.') + 1).toLowerCase();
+
+                    var file3 = document.getElementById('filechooser2');
+                    var cssvfile2 = file3.value;
+                    var Extension2 = cssvfile2.substring(cssvfile2.lastIndexOf('.') + 1).toLowerCase();
+
+                    var file4 = document.getElementById('filechooser3');
+                    var cssvfile3 = file4.value;
+                    var Extension3 = cssvfile3.substring(cssvfile3.lastIndexOf('.') + 1).toLowerCase();
+
+                    if(cssvfile == "")
+                        {
+                            document.getElementById('file1').innerHTML = "*** Please Upload a CSVfile"
+                            return false;
+
+                           }
+                    if(Extension != "csv")
+
+                        {
+                            document.getElementById('file1').innerHTML = "*** Please Upload CSV files only"
+                            return false;
+                        }
+
+                    if(cssvfile1 == "")
+                        {
+                            document.getElementById('file2').innerHTML = "*** Please Upload a CSVfile"
+                            return false;
+
+                           }
+                    if(Extension2 != "csv")
+
+                        {
+                            document.getElementById('file2').innerHTML = "*** Please Upload CSV files only"
+                            return false;
+                        }
+
+                    if(cssvfile3 == "")
+                        {
+                            document.getElementById('file3').innerHTML = "*** Please Upload a CSVfile"
+                            return false;
+
+                           }
+                    if(Extension3 != "csv")
+
+                        {
+                            document.getElementById('file3').innerHTML = "*** Please Upload CSV files only"
+                            return false;
+                        }
+
+                    if(cssvfile4 == "")
+                        {
+                            document.getElementById('file4').innerHTML = "*** Please Upload a CSVfile"
+                            return false;
+
+                           }
+                    if(Extension4 != "csv")
+
+                        {
+                            document.getElementById('file4').innerHTML = "*** Please Upload CSV files only"
+                            return false;
+                        }
+                }
+
+            </script>
+            {% endif %}
+
+            {% if msg == "select_model" %}
+                <div class="select_form12">
+                    <h3>Select model</h3>
+                    <form method="post" action="{{url_for('selected_model_submitted',xtrain=xtrain,ytrain=ytrain,xtest=xtest,ytest=ytest)}}" onsubmit="return validateForm()" name="myForm">
+                    <div class="form_blg12">
+                        <select name="selected" >
+                            <option value="">Select an option</option>
+                            <option value="1">Random Forest</option>
+                        </select>
+                        <span id="selected_form" class="span_text1"></span>
+                    </div>
+                    <div class="form_blg12">
+                        <input type="submit" value="Submit" class="btn btn-info">
+                    </div>
+                </form>
+                </div>
+                <script>
+                    function validateForm()
+                    {
+                        var selected = document.forms['myForm']['selected'].value;
+                        if(selected == "")
+                        {
+                            document.getElementById('selected_form').innerHTML = "**** Please select an option"
+                            return false;
+                        }
+                    }
+                </script>
+
+
+            {% endif %}
+                        {% if msg == "accuary" %}
+                            <div class="container modelpar">
+                                    <p>The selected Model is based on {{model}} whose accuracy on Test Dataset is <span>{{result_accu}}</span></p>
+                             </div>
+                        {% endif %}
+                        {% endblock %}
+</body>
+</html>

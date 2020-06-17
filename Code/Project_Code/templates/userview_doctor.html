@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Health Predictor</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/view doctor1.jpg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+{% block banner %}
+{% endblock %}
+
+                        {% block nav %}
+                            <h1 style="text-align:center;">View Doctor Details</h1>
+                        <div class="sidemenu1">
+
+                                    <div class="sidenav">
+                                      <a href="/User-Homepage">Home</a>
+                                      <button class="dropdown-btn">Diseases Analysis
+                                        <i class="fa fa-caret-down"></i>
+                                      </button>
+                                      <div class="dropdown-container">
+                                        <a href="/User/Heart-Analysis/">Heart Analysis</a>
+                                        <a href="/User/Dengu-Analysis/">Dengue Analysis</a>
+                                      </div>
+                                        <a href="/Viewsuser-Doctor" class="active1">View Doctor</a>
+                                      <a href="/logout">logout</a>
+                                    </div>
+                                    <!--<div class="vertical-menu">-->
+                                      <!--<a href="/User-Homepage">Home</a>-->
+                                      <!--<a href="#">Diseases Analysis</a>-->
+                                      <!--<a href="/Viewsuser-Doctor" class="active">View Doctor</a>-->
+                                      <!--<a href="/logout">Logout</a>-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash;<div class="banner_blg1">&ndash;&gt;-->
+                                        <!--<nav class="navbar navbar-default nav-blgheader">-->
+                                            <!--<ul class="nav navbar-nav nav_blg1">-->
+                                              <!--<li class="active"><a href="/User-Homepage">Home</a></li>-->
+                                                <!--<li><a href="/User/Heart-Analysis/">Heart Analysis</a></li>-->
+                                                <!--<li><a href="/User/Dengu-Analysis/">Dengue Analysis</a></li>-->
+                                                <!--<li><a href="/Viewsuser-Doctor">View Doctor</a></li>-->
+                                                <!--<li><a href="/logout">Logout</a></li>-->
+                                            <!--</ul>-->
+                                        <!--</nav>-->
+                                    <!--</div>-->
+                                </div>
+                                <script>
+                                var dropdown = document.getElementsByClassName("dropdown-btn");
+                                var i;
+
+                                for (i = 0; i < dropdown.length; i++) {
+                                  dropdown[i].addEventListener("click", function() {
+                                    this.classList.toggle("active");
+                                    var dropdownContent = this.nextElementSibling;
+                                    if (dropdownContent.style.display === "block") {
+                                      dropdownContent.style.display = "none";
+                                    } else {
+                                      dropdownContent.style.display = "block";
+                                    }
+                                  });
+                                }
+                            </script>
+                        {% endblock %}
+
+                        {% block body %}
+                            <div class="sidemenu" >
+                                <table class="viewdoc_table">
+                                <tr class="viewdoc_tr">
+                                    <th class="viewdoc_th">Name</th>
+                                    <th class="viewdoc_th">Email</th>
+                                    <th class="viewdoc_th">Mobile Number</th>
+                                    <th class="viewdoc_th">Hospital name</th>
+                                      <th class="viewdoc_th">Hospital address</th>
+                                    <th class="viewdoc_th">City</th>
+                                      <th class="viewdoc_th">Landmark</th>
+                                    <th class="viewdoc_th">Age</th>
+                                    <th class="viewdoc_th">Specailist</th>
+                                    <th class="viewdoc_th">Gender</th>
+                                </tr>
+                                {% for i in results%}
+                                <tr class="viewdoc_tr">
+                                    <td class="viewdoc_td">{{i[1]}}</td>
+                                    <td class="viewdoc_td">{{i[2]}}</td>
+                                    <td class="viewdoc_td">{{i[4]}}</td>
+                                    <td class="viewdoc_td">{{i[5]}}</td>
+                                    <td class="viewdoc_td">{{i[6]}}</td>
+                                    <td class="viewdoc_td">{{i[7]}}</td>
+                                    <td class="viewdoc_td">{{i[8]}}</td>
+                                    <td class="viewdoc_td">{{i[9]}}</td>
+                                    <td class="viewdoc_td">{{i[10]}}</td>
+                                    <td class="viewdoc_td">{{i[12]}}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            </div>
+                        {% endblock %}
+</body>
+</html>

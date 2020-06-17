@@ -1,0 +1,107 @@
+{% extends 'index.html' %}
+
+    {% block title %}
+        <title>Sign In</title>
+    {% endblock %}
+
+    {% block nav %}
+        <div class="container-fluid">
+            <div class="container header_blg">
+                <h1>Health predictor</h1>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block banner %}
+    {% endblock %}
+
+    {% block body %}
+    <div class="container">
+            {% if msg == "invalid_emailid" %}
+                <div class="alert alert-warning data-dismissible fade in ">
+                    <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                    <strong>Invalid Emailid </strong>
+                </div>
+            {% endif %}
+            {% if msg == "invalid_password" %}
+                <div class="alert alert-warning data-dismissible fade in ">
+                    <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                    <strong>Invalid Password </strong>
+                </div>
+            {% endif %}
+    </div>
+        <div class="signup_formblg">
+            <h3 class="text_align">Sign In Form</h3>
+            <div class="inner_signupformblg">
+            <form method = "post" action="{{url_for('signin_submitted')}}" class="form-horizontal" onsubmit="return validateForm()" name="myForm">
+                  <div class="form-group">
+                    <label class="control-label col-sm-4">Email:</label>
+                    <div class="col-sm-8">
+                      <input type="email" class="form-control"  placeholder="Enter Email" name="emailid">
+                        <span id="emailid1" class="span_text"></span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Password:</label>
+                    <div class="col-sm-8">
+                      <input type="password" class="form-control" placeholder="Enter Password" name="password1">
+                        <span id="password1" class="span_text"></span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Select:</label>
+                    <div class="col-sm-8">
+                      <select name="selected" class="select_form">
+                          <option value="">Select type</option>
+                          <option value="admin">Admin</option>
+                          <option value="user">User</option>
+                          <option value="doctor">Doctor</option>
+                      </select>
+                        <span id="selected1" class="span_text"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                      <input type="submit" class="btn btn-info" value="Submit">
+                    </div>
+                  </div>
+            </form>
+            </div><!---inner_signupformblg----->
+        </div><!---signup_formblg----->
+        <script>
+            function validateForm()
+            {
+
+                var emailid = document.forms['myForm']['emailid'].value;
+                var password1 = document.forms['myForm']['password1'].value;
+                var selected = document.forms['myForm']['selected'].value;
+
+                        if(emailid == "")
+                        {
+                            document.getElementById('emailid1').innerHTML = '*** Please Enter Emailid';
+                            return false;
+                        }
+                        if(emailid.charAt(emailid.length -4)!='.' && emailid.charAt(emailid.length -3)!='.')
+                        {
+                            document.getElementById('emailid1').innerHTML = "*** '.' Invalid Postion";
+                            return false;
+                        }
+                        if(password1 == "")
+                        {
+                            document.getElementById('password1').innerHTML = "*** Please Enter Password"
+                            return false;
+                        }
+                        if(password1.length < 2 || password1.length > 15 )
+                        {
+                            document.getElementById('password1').innerHTML = "*** The password sholuld entered between 2 to 15"
+                            return false;
+                        }
+                        if(selected == "")
+                        {
+                            document.getElementById('selected1').innerHTML = "*** Please Select type"
+                            return false;
+                        }
+
+            }
+        </script>
+    {% endblock %}

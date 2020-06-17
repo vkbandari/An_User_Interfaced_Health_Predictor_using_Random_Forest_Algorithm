@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Health Predictor</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/dengue.jpg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+{% block banner %}
+{% endblock %}
+
+                        {% block nav %}
+                           <h1 style="text-align:center;">Fever Analysis</h1>
+                        <div class="sidemenu1">
+
+                                    <div class="sidenav">
+                                      <a href="/User-Homepage" >Home</a>
+                                      <button class="dropdown-btn">Diease prediction
+                                        <i class="fa fa-caret-down"></i>
+                                      </button>
+                                      <div class="dropdown-container">
+                                        <a href="/User/Heart-Analysis/">Heart Analysis</a>
+                                        <a href="/User/Dengu-Analysis/" class="active1">Fever Analysis</a>
+                                      </div>
+                                        <a href="/Viewsuser-Doctor">View Doctor</a>
+                                      <a href="/logout">logout</a>
+                                    </div>
+                        </div>
+                            <script>
+                                var dropdown = document.getElementsByClassName("dropdown-btn");
+                                var i;
+
+                                for (i = 0; i < dropdown.length; i++) {
+                                  dropdown[i].addEventListener("click", function() {
+                                    this.classList.toggle("active");
+                                    var dropdownContent = this.nextElementSibling;
+                                    if (dropdownContent.style.display === "block") {
+                                      dropdownContent.style.display = "none";
+                                    } else {
+                                      dropdownContent.style.display = "block";
+                                    }
+                                  });
+                                }
+                            </script>
+                        {% endblock %}
+
+                        {% block body %}
+                            <div class="container">
+                                {% if msg2 %}
+                                   <div class="alert alert-success alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong> {{ msg2 }}</strong>
+                                    </div>
+                                {% endif %}
+                                {% if msg1 == "predicted_successfully" %}
+
+                                    {% if results == 0 %}
+                                    <div class="alert alert-danger alertstrong">
+                                        <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                                        <strong>Patient was predicted to have Malaria</strong>
+                                        <p class="precuations_p">The following Precautions to be taken </p>
+                                        <ul class="precuations_ul">
+                                            <li><h3>Wear long-sleeved shirts, and long trousers</h3> towards evening. Socks and closed shoes
+                                                are also recommended. Mosquitoes tend to be active in the early evening.</li>
+                                            <li><h3>Bite prevention</h3> – avoid mosquito bites by using insect repellent, covering
+                                                your arms and legs, and using a mosquito net.</li>
+                                            <li><h3>Apply insect repellents</h3> to exposed skin areas every 4-6 hours</li>
+                                            <li><h3>Burn insecticide oils</h3> or electrically heated insecticide tablets in the bedroom at night</li>
+
+                                        </ul>
+                                         <a href="{{url_for('book_appointment',name='Malaria')}}" class="btn btn-info">Book_appointment</a>
+                                    </div>
+                                    {% endif %}
+                                    {% if results == 1 %}
+                                    <div class="alert alert-danger alertstrong">
+                                        <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                                        <strong>Patient was predicted to have Dengue</strong>
+                                        <p class="precuations_p">The following Precautions to be taken </p>
+                                        <ul class="precuations_ul">
+                                            <li>Protect yourself against mosquito bites</li>
+                                            <li>Prevent mosquito breeding inside and outside your home</li>
+                                            <li>Avoid visiting areas prone to mosquitoes</li>
+                                        </ul>
+                                         <a href="{{url_for('book_appointment',name='Dengue')}}" class="btn btn-info">Book_appointment</a>
+                                    </div>
+                                    {% endif %}
+                                    {% if results == 2 %}
+                                    <div class="alert alert-danger alertstrong">
+                                        <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                                        <strong>Patient was predicted to have Typhoid</strong>
+                                        <p class="precuations_p">The following Precautions to be taken </p>
+                                        <ul class="precuations_ul">
+                                            <li><h3>Wash your hands</h3>. Frequent hand-washing in hot, soapy water is the best way to control
+                                               infection. Wash before eating or preparing food and after using the toilet.
+                                               Carry an alcohol-based hand sanitizer for times when water isn't available.</li>
+                                            <li><h3>Avoid drinking untreated water</h3>. Contaminated drinking water is a particular problem
+                                                in areas where typhoid fever is endemic. For that reason, drink only bottled water
+                                                or canned or bottled carbonated beverages, wine and beer. Carbonated bottled water
+                                                is safer than uncarbonated bottled water is.
+                                                Ask for drinks without ice. Use bottled water to brush your teeth, and try not
+                                                to swallow water in the shower.</li>
+                                            <li><h3>Avoid raw fruits and vegetables</h3>. Because raw produce may have been washed in
+                                                unsafe water, avoid fruits and vegetables that you can't peel, especially lettuce.
+                                                To be absolutely safe, you may want to avoid raw foods entirely.</li>
+                                            <li><h3>Choose hot foods</h3>. Avoid food that's stored or served at room temperature.
+                                                Steaming hot foods are best. And although there's no guarantee that meals
+                                                served at the finest restaurants are safe, it's best to avoid food from street
+                                                vendors — it's more likely to be contaminated.</li>
+                                        </ul>
+                                         <a href="{{url_for('book_appointment',name='Typhoid')}}" class="btn btn-info">Book_appointment</a>
+                                    </div>
+                                    {% endif %}
+
+                            {% endif %}
+                                <div class="sidemenu" >
+                    <div class="cancer_form">
+                        <form class="form-horizontal" method="post" action="{{url_for('dengu_analysis_submitted')}}" onsubmit="return validateForm()" name="myForm" enctype = "multipart/form-data">
+                            <!--<div class="formblg">-->
+                                <!--<label>Upload Independent Training dataset</label>-->
+                                <!--<input type="file" name="xtarin" id="filechooser1">-->
+                                <!--<div class="span_text">-->
+                                    <!--<span id="file1" ></span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="formblg">-->
+                                <!--<label>Upload Target Training dataset</label>-->
+                                    <!--<input type="file" name="ytarin" id="filechooser2">-->
+                                    <!--<div class="span_text">-->
+                                        <!--<span id="file2" ></span>-->
+                                    <!--</div>-->
+                            <!--</div>-->
+                                <div class="clearfix"></div>
+
+                            <div class="mean">
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">Skin rash:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="skinrash" value="0"><span>No</span>
+                                    <input type="radio" name="skinrash" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">Chills:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="chills" value="0"><span>No</span>
+                                    <input type="radio" name="chills" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">Joint pain:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="jointpain" value="0"><span>No</span>
+                                    <input type="radio" name="jointpain" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">Vomiting:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="vomiting" value="0"><span>No</span>
+                                    <input type="radio" name="vomiting" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">Fatigue:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="fatigue" value="0"><span>No</span>
+                                    <input type="radio" name="fatigue" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">High fever:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="highfever" value="0"><span>No</span>
+                                    <input type="radio" name="highfever" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">Sweating:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="sweating" value="0"><span>No</span>
+                                    <input type="radio" name="sweating" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">Headache:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="headache" value="0"><span>No</span>
+                                    <input type="radio" name="headache" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">Nausea:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="nausea" value="0"><span>No</span>
+                                    <input type="radio" name="nausea" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+                            <div class="form-group formgroup">
+                                <label class="control-label col-sm-6">Loss of appetite:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="lossofappetite" value="0"><span>No</span>
+                                    <input type="radio" name="lossofappetite" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                            </div><!--form-group---->
+
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">Pain_behind_the_eyes:</label>
+                                    <div class="col-sm-6">
+                                    <input type="radio" name="painbehindtheeyes" value="0"><span>No</span>
+                                    <input type="radio" name="painbehindtheeyes" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div><!--form-group---->
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">Back pain:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="backpain" value="0"><span>No</span>
+                                    <input type="radio" name="backpain" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div><!--form-group---->
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">Constipation:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="constipation" value="0"><span>No</span>
+                                    <input type="radio" name="constipation" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div>
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">Abdominalpain:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="Abdominalpain" value="0"><span>No</span>
+                                    <input type="radio" name="Abdominalpain" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div>
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">Diarrhoea:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="diarrhoea" value="0"><span>No</span>
+                                    <input type="radio" name="diarrhoea" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div>
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">malaise:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="malaise" value="0"><span>No</span>
+                                    <input type="radio" name="malaise" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div>
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">Toxic_look_(typhos):</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="toxiclook" value="0"><span>No</span>
+                                    <input type="radio" name="toxiclook" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div>
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">Muscle pain:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="musclepain" value="0"><span>No</span>
+                                    <input type="radio" name="musclepain" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div>
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">Red spots over body:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="Redspotsoverbody" value="0"><span>No</span>
+                                    <input type="radio" name="Redspotsoverbody" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div>
+                                <div class="form-group formgroup">
+                                    <label class="control-label col-sm-6">Belly pain:</label>
+                                <div class="col-sm-6">
+                                    <input type="radio" name="bellypain" value="0"><span>No</span>
+                                    <input type="radio" name="bellypain" value="1"><span>Yes</span>
+                                </div><!---col-sm-10-->
+                                </div>
+                                    <div class="formsubmit">
+                                    <input type="submit" value="Predict" class="btn btn-info">
+
+                                    </div>
+
+
+                            </div><!---meanblg---->
+                        </form>
+                    </div><!---cancerform--->
+                                </div><!---sidemenu--->
+                            </div><!---containerblg--->
+                    <script>
+                function validateForm()
+                {
+
+                    var file1 = document.getElementById('filechooser1');
+                    var cssvfile = file1.value;
+                    var Extension = cssvfile.substring(cssvfile.lastIndexOf('.') + 1).toLowerCase();
+
+                    var file2 = document.getElementById('filechooser2');
+                    var cssvfile1 = file2.value;
+                    var Extension1 = cssvfile1.substring(cssvfile1.lastIndexOf('.') + 1).toLowerCase();
+
+
+                    if(cssvfile == "")
+                        {
+                            document.getElementById('file1').innerHTML = "*** Please Upload file"
+                            return false;
+
+                        }
+                    if(Extension != "csv")
+
+                        {
+                            document.getElementById('file1').innerHTML = "*** Please Upload CSV files only"
+                            return false;
+                        }
+                    if(cssvfile1 == "")
+                        {
+                            document.getElementById('file2').innerHTML = "*** Please Upload file"
+                            return false;
+
+                        }
+                    if(Extension1 != "csv")
+
+                        {
+                            document.getElementById('file2').innerHTML = "*** Please Upload CSV files only"
+                            return false;
+                        }
+                }
+
+                    </script>
+                        {% endblock %}
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</html>

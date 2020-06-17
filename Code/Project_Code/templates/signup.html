@@ -1,0 +1,200 @@
+{% extends 'index.html' %}
+
+    {% block title %}
+        <title>Registration Form</title>
+    {% endblock %}
+
+    {% block nav %}
+    {% endblock %}
+
+    {% block banner %}
+    <div class="container-fluid banner1">
+                <img src="{{url_for('static',filename='images/healthcare1.jpg')}}" alt="healthcare" class="img-thumbnail" style="width:1296px ; height: 600px">
+        </div>
+    {% endblock %}
+
+    {% block body %}
+    {% if msg == "signup" %}
+<div class="siupblg">
+    <div class="container">
+            {% if msg == "emailid_exits" %}
+                <div class="alert alert-warning data-dismissible fade in ">
+                    <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                    <strong>Email id is already exits </strong>
+                </div>
+            {% endif %}
+            {% if msg == "phonenumber_exits" %}
+                <div class="alert alert-warning data-dismissible fade in ">
+                    <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                    <strong>Phonenumber is already exits </strong>
+                </div>
+            {% endif %}
+            {% if msg == "successfully_registered" %}
+                <div class="alert alert-success data-dismissible fade in ">
+                    <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                    <strong>Successfully Registered</strong>
+                </div>
+            {% endif %}
+    </div>
+        <div class="signup_formblg">
+
+            <h3 class="text_align1">Registration Form</h3>
+            <div class="inner_signupformblg form1">
+            <form method="post" action="{{url_for('signup_submitted')}}" class="form-horizontal" onsubmit="return validateForm()" name="myForm">
+                  <div class="form-group">
+                    <label class="control-label col-sm-4">Name:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Enter Name" name="uname">
+                        <span id="uname1" class="span_text" style="color: red"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-4" >Email:</label>
+                    <div class="col-sm-8">
+                      <input type="email" class="form-control"  placeholder="Enter Email" name="emailid">
+                        <span id="emailid1" class="span_text" style="color: red"></span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Password:</label>
+                    <div class="col-sm-8">
+                      <input type="password" class="form-control" placeholder="Enter Password" name="password1">
+                        <span id="password1" class="span_text" style="color: red"></span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Phone Number:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Enter Phonenumber" name="phnumber">
+                        <span id="phnumber1" class="span_text" style="color: red"></span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Date:</label>
+                    <div class="col-sm-8">
+                      <input type="date" class="form-control" name="date">
+                        <span id="date1" class="span_text" style="color: red"></span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Address:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Enter Address" name="address">
+                        <span id="address1" class="span_text" style="color: red"></span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">City:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Enter City" name="city">
+                        <span id="city" class="span_text" style="color: red"></span>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Select:</label>
+                    <div class="col-sm-8">
+                      <select name="selected" class="select_form">
+                          
+                          <option value="user">User</option>
+                      </select>
+                        <span id="selected1" class="span_text" style="color: red"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                      <input type="submit" class="btn btn-info" value="Submit">
+                        <span class="loginbtn"><a href="/" >Login?</a></span>
+                    </div>
+                  </div>
+            </form>
+            </div><!---inner_signupformblg----->
+        </div><!---signup_formblg----->
+        <script>
+            function validateForm()
+            {
+                var uname = document.forms['myForm']['uname'].value;
+                var letters = /^[A-Za-z0-9]+$/;
+                var emailid = document.forms['myForm']['emailid'].value;
+                var password1 = document.forms['myForm']['password1'].value;
+                var phnumber = document.forms['myForm']['phnumber'].value;
+                var date = document.forms['myForm']['date'].value;
+                var address = document.forms['myForm']['address'].value;
+                var city = document.forms['myForm']['city'].value;
+                var selected = document.forms['myForm']['selected'].value;
+
+                        if(uname == "")
+                        {
+                            document.getElementById('uname1').innerHTML = '*** Please Enter Name';
+                            return false;
+                        }
+                        if(!uname.match(letters))
+                        {
+                            document.getElementById('uname1').innerHTML = '*** Please Enter characters only';
+                            return false;
+                        }
+                        if(!isNaN(uname))
+                        {
+                            document.getElementById('uname1').innerHTML = '*** Please Enter characters only';
+                            return false;
+                        }
+                        if(emailid == "")
+                        {
+                            document.getElementById('emailid1').innerHTML = '*** Please Enter Emailid';
+                            return false;
+                        }
+                        if(emailid.charAt(emailid.length -4)!='.' && emailid.charAt(emailid.length -3)!='.')
+                        {
+                            document.getElementById('emailid1').innerHTML = "*** '.' Invalid Postion";
+                            return false;
+                        }
+                        if(password1 == "")
+                        {
+                            document.getElementById('password1').innerHTML = "*** Please Enter Password"
+                            return false;
+                        }
+                        if(password1.length < 2 || password1.length > 15 )
+                        {
+                            document.getElementById('password1').innerHTML = "*** The password sholuld entered between 2 to 15"
+                            return false;
+                        }
+                        if(phnumber == "")
+                        {
+                            document.getElementById('phnumber1').innerHTML = "*** Please Enter Phone Number"
+                            return false;
+                        }
+                        if(phnumber.length != 10)
+                        {
+                            document.getElementById('phnumber1').innerHTML = "*** Please 10digit Phone number"
+                            return false;
+                        }
+                        if(isNaN(phnumber))
+                        {
+                            document.getElementById('phnumber1').innerHTML = "*** Please Enter digits only"
+                            return false;
+                        }
+                        if(date == "")
+                        {
+                            document.getElementById('date1').innerHTML = "*** Please select dob"
+                            return false;
+                        }
+                        if(address == "")
+                        {
+                            document.getElementById('address1').innerHTML = "*** Please Enter Address"
+                            return false;
+                        }
+                        if(city == "")
+                        {
+                            document.getElementById('city').innerHTML = "*** Please Enter City"
+                            return false;
+                        }
+                        if(selected == "")
+                        {
+                            document.getElementById('selected1').innerHTML = "*** Please Select type"
+                            return false;
+                        }
+
+            }
+        </script>
+</div>
+        {% endif %}
+    {% endblock %}

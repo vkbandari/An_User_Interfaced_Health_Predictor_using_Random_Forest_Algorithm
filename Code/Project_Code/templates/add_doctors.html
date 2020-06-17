@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Health Predictor</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{url_for('static',filename='CSS/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='JS/script.js')}}" rel="stylesheet">
+</head>
+<body class="bgclor" style="background-image:url('{{url_for('static',filename='images/addoctor.jpeg')}}');background-size: cover;" >
+
+<!--<body style="background-image:url('{{url_for('static',filename='images/healthcare.jpg')}}')">-->
+{% block banner %}
+{% endblock %}
+
+                        {% block nav %}
+                        <h1 style="text-align:center">Add doctors</h1>
+                            <div class="sidemenu1">
+                            <div class="vertical-menu">
+                              <a href="/Admin-Homepage">Home</a>
+                              <a href="/Admin-Homepage/Add-Doctors/" class="active">Add Doctor</a>
+                              <a href="/View-users/">View User</a>
+                                <a href="/View-Doctor" >View Doctor</a>
+                              <a href="/logout">Logout</a>
+                            </div>
+                        </div>
+                        {% endblock %}
+
+                        {% block body %}
+                        <div class="adddoctorblg">
+                            <div class="container-fluid">
+                                <div class="container">
+                                    {% if msg == "successfully_added" %}
+                                        <div class="alert alert-success">
+                                            <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                                            <strong>Successfully added Doctor details</strong>
+                                        </div>
+                                    {% endif %}
+                                    <div class="signup_formblg signup_formblg1 signup_formblg2">
+                                        <h3 class="text_align">Add Doctors</h3>
+                                        <div class="inner_signupformblg inner_signupformblg1 form2">
+                                        <form  method ="post" action="{{url_for('add_doctors_submitted')}}" class="form-horizontal" onsubmit="return validateForm()" name="myForm">
+                                              <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4">Name:</label>
+                                                <div class="col-sm-8">
+                                                  <input type="text" class="form-control" placeholder="Enter Name" name="uname2">
+                                                    <span id="uname1" class="span_text"></span>
+                                                </div>
+                                              </div>
+                                              <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4" >Email:</label>
+                                                <div class="col-sm-8">
+                                                  <input type="email" class="form-control"  placeholder="Enter Email" name="emailid">
+                                                    <span id="emailid1" class="span_text"></span>
+                                                </div>
+                                              </div>
+                                            <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4" >Phone number:</label>
+                                                <div class="col-sm-8">
+                                                  <input type="text" class="form-control"  placeholder="Enter Mobile number" name="phnumber">
+                                                    <span id="phnumber1" class="span_text"></span>
+                                                </div>
+                                              </div>
+                                             <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4" >Hospital name:</label>
+                                                <div class="col-sm-8">
+                                                  <input type="text" class="form-control"  placeholder="Enter name of the hospital" name="hname">
+                                                    <span id="hname1" class="span_text"></span>
+                                                </div>
+                                              </div>
+                                             <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4" >Hospital address:</label>
+                                                <div class="col-sm-8">
+                                                  <input type="text" class="form-control"  placeholder="Enter address of the hospital" name="haddress">
+                                                    <span id="haddress1" class="span_text"></span>
+                                                </div>
+                                              </div>
+                                            <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4">City:</label>
+                                                <div class="col-sm-8">
+                                                  <input type="text" class="form-control" placeholder="Enter City" name="city">
+                                                    <span id="city" class="span_text"></span>
+                                                </div>
+                                              </div>
+                                             <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4">Landmark:</label>
+                                                <div class="col-sm-8">
+                                                  <input type="text" class="form-control" placeholder="Enter Landmark" name="landmark">
+                                                    <span id="landmark" class="span_text"></span>
+                                                </div>
+                                              </div>
+                                            <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4">Age:</label>
+                                                <div class="col-sm-8">
+                                                  <input type="text" class="form-control" placeholder="Enter Age" name="age">
+                                                    <span id="age" class="span_text"></span>
+                                                </div>
+                                              </div>
+                                            <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4">Specialist In:</label>
+                                                <div class="col-sm-8">
+                                                  <input type="text" class="form-control" placeholder="Enter Specialist In" name="specialist">
+                                                    <span id="specialist" class="span_text"></span>
+                                                </div>
+                                              </div>
+                                            <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4">Select specification disease:</label>
+                                                <div class="col-sm-8">
+                                                    <select name="selected" class="form-control">
+                                                        <option value="">Select type</option>
+                                                        <option value="heart disease">heart disease</option>
+                                                        <option value="Malaria">Malaria</option>
+                                                        <option value="Dengue">Dengue</option>
+                                                        <option value="Typhoid">Typhoid</option>
+                                                    </select>
+                                                    <span id="selected1" class="span_text"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group formgroup12">
+                                                <label class="control-label col-sm-4">Gender:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="radio" name="gender" value="male"><i>Male</i>
+                                                    <input type="radio" name="gender" value="female"><i>Female</i>
+                                                    <span id="gender" class="span_text"></span>
+                                                </div>
+                                              </div>
+
+                                              <div class="form-group formgroup12">
+                                                <div class="col-sm-offset-4 col-sm-8">
+                                                  <input type="submit" class="btn btn-info" value="Submit">
+                                                </div>
+                                              </div>
+                                        </form>
+                                        </div><!---inner_signupformblg----->
+                                    </div><!---signup_formblg----->
+                                </div>
+                            </div>
+                        </div>
+        <script>
+            function validateForm()
+            {
+
+                var uname2 = document.forms['myForm']['uname2'].value;
+                var emailid = document.forms['myForm']['emailid'].value;
+                var phnumber = document.forms['myForm']['phnumber'].value;
+                var city = document.forms['myForm']['city'].value;
+                var landmark = document.forms['myForm']['landmark'].value;
+                var age = document.forms['myForm']['age'].value;
+                var specialist1 = document.forms['myForm']['specialist'].value;
+                var gender1 = document.forms['myForm']['gender'].value;
+
+
+                        if(uname2 == "")
+                        {
+                            document.getElementById('uname1').innerHTML = '*** Please Enter Name';
+                            return false;
+                        }
+                        if(!isNaN(uname2))
+                        {
+                            document.getElementById('uname1').innerHTML = '*** Please Enter characters only';
+                            return false;
+                        }
+                        if(emailid == "")
+                        {
+                            document.getElementById('emailid1').innerHTML = '*** Please Enter Emailid';
+                            return false;
+                        }
+                        if(emailid.charAt(emailid.length -4)!='.' && emailid.charAt(emailid.length -3)!='.')
+                        {
+                            document.getElementById('emailid1').innerHTML = "*** '.' Invalid Postion";
+                            return false;
+                        }
+                        if(phnumber == "")
+                        {
+                            document.getElementById('phnumber1').innerHTML = "*** Please Enter Phone Number"
+                            return false;
+                        }
+                        if(phnumber.length != 10)
+                        {
+                            document.getElementById('phnumber1').innerHTML = "*** Please 10digit Phone number"
+                            return false;
+                        }
+                        if(isNaN(phnumber))
+                        {
+                            document.getElementById('phnumber1').innerHTML = "*** Please Enter digits only"
+                            return false;
+                        }
+
+                        if(city == "")
+                        {
+                            document.getElementById('city').innerHTML = "*** Please Enter City"
+                            return false;
+                        }
+                        if(!isNaN(city))
+                        {
+                            document.getElementById('city').innerHTML = "*** Please Enter characters only"
+                            return false;
+                        }
+                        if(landmark == "")
+                        {
+                            document.getElementById('landmark').innerHTML = "*** Please Enter City"
+                            return false;
+                        }
+                        if(!isNaN(landmark))
+                        {
+                            document.getElementById('landmark').innerHTML = "*** Please Enter characters only"
+                            return false;
+                        }
+                        if(age == "")
+                        {
+                            document.getElementById('age').innerHTML = "*** Please Enter Age"
+                            return false;
+                        }
+                        if(isNaN(age))
+                        {
+                            document.getElementById('age').innerHTML = "*** Please Enter digits only"
+                            return false;
+                        }
+                        if(specialist1 == "")
+                        {
+                            document.getElementById('specialist').innerHTML = "*** Please Enter Specialist"
+                            return false;
+                        }
+                        if(!isNaN(specialist1))
+                        {
+                            document.getElementById('specialist').innerHTML = "*** Please Enter characters only"
+                            return false;
+                        }
+                        if(gender1 == "")
+                        {
+                            document.getElementById('gender').innerHTML = "*** Please Select Gender"
+                            return false;
+                        }
+
+
+            }
+        </script>
+                        {% endblock %}
+</body>
+</html>
