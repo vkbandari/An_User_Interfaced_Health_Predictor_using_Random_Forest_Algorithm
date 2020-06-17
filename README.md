@@ -18,15 +18,18 @@
 
 <b>Requirements to run this project:</b>
 
-Operating System - Windows 10 OS
-Environment - Anaconda 5.3
-Front End - HTML5, CSS3, Bootstrap4
-Scripts - Python 3.5+, JavaScript 1.8. 5,
-Libraries - NumPy 1.16. 0, Pandas 1.0.3, Matplotlib 3.2.1, Seaborn 0.10.1, Scikit-Learn 0.21.
-Database - MySQL 6.0 
+<ul>
+  <li>Operating System - Windows 10 OS</li>
+  <li>Environment - Anaconda 5.3</li>
+  <li>Front End - HTML5, CSS3, Bootstrap4</li>
+  <li>Scripts - Python 3.5+</li>
+  <li>Libraries - NumPy 1.16. 0, Pandas 1.0.3, Matplotlib 3.2.1, Seaborn 0.10.1, Scikit-Learn 0.21.</li>
+  <li>Database - MySQL 6.0 </li>
+</ul>
 
+<br>
 <p>code is running successful as on: 20-05-2020</p>
 
 
-
+<br><br>
 <p>Please inform me to use this project for any purpose and if any quries please mail me : krishnavamshi.12321@gmail.com</p>
